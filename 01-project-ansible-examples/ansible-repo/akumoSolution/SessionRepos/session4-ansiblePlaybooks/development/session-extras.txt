@@ -1,6 +1,0 @@
-Note: /etc/os-release - is the location where the information about the current OS is located
-
-Note: Hostnamectl set-hostname + your random name, will change the host name
-to make it permanent you need to log out and log back.
-
-Note: "Anible double tap command" whole available options for ansible commands

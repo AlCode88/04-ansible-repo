@@ -1,5 +1,0 @@
-[centos_ansible]
-ansible ansible ansible_ssh_host=ansible@44.194.60.161
-# ansible_ssh_host=ansible@3.232.34.60
-
-# file added 

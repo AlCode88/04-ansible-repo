@@ -1,8 +1,0 @@
-#this is our first playbook to ping the hosts
-# command to execuite is: ansible-playbook -i inventoryfile.yaml playbookname.
----
-  - name: Ping Hosts
-    hosts: all
-    tasks:
-      - name: Ping Hosts
-        ping:

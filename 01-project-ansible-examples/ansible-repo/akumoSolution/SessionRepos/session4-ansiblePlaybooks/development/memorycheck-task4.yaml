@@ -1,0 +1,11 @@
+---
+  - name: Memory Check
+    hosts: dev
+    tasks:
+      - name: Memory
+        shell: 
+          cmd: free -h
+        register: output
+
+      - debug:
+          var: output      

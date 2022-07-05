@@ -1,0 +1,8 @@
+---
+  - name: Ping server with condition
+    hosts: webservers
+    gather_facts: yes
+    tasks:
+      - name: Ping the prod server
+        when: "'prod' in group_names"
+        ping: 

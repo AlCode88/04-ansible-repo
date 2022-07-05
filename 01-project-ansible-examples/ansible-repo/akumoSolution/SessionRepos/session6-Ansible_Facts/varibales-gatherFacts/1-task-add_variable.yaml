@@ -1,0 +1,15 @@
+---
+  - name: Add more variables
+    hosts: ubuntu
+    gather_facts: yes
+    vars:
+      myvariable1: "Hello from var1"
+      myvariable2: "This is variable 2"
+    tasks:
+      - name: Add one more variable
+        debug:
+          msg:
+            - '{{myvariable1}}'
+            - '{{myvariable2}}'
+            
+        

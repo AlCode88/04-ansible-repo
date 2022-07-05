@@ -1,0 +1,8 @@
+---
+  - name: Create a file on CentOS
+    hosts: centos
+    tasks:
+      - name: create a file newfile.txt on centos 
+        file:
+          path: /tmp/newfile.txt
+          state: touch

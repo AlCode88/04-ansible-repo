@@ -1,0 +1,7 @@
+---
+  - name: Ping file with ansible facts
+    hosts: all
+    gather_facts: no
+    tasks:
+      - name: Pings file with ansible facts
+        ping: 

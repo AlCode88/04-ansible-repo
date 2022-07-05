@@ -1,0 +1,19 @@
+---
+  - name: Install httpd on CentOS
+    hosts: centos
+    tasks:
+      - name: install Apache
+        yum: 
+          name: httpd
+          state: latest
+
+      - name: make sure Apache is running and enabled
+        systemd:
+          name: httpd
+          state: started
+          enabled: yes
+
+      - name: make sure Apache is running and enabled
+        copy:
+          src: /tmp/index.html
+          dest: /var/www/html/

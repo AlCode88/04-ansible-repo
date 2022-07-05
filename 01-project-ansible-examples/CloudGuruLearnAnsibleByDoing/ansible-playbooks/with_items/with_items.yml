@@ -1,0 +1,29 @@
+---
+  - name: Install with Items
+    hosts: ubuntu
+    # gather_facts: no
+    become: true
+    tasks:
+      - name: Install webcomponent
+        apt:
+          name: {{ item }}
+          state: latest
+          update_cache: yes
+          when: ansible_facts['distribution'] == "Ubuntu"
+        
+        with_items:
+        - apache2
+          - libapache2-mod-wsgi
+          - python-pip
+          - python-virtualenv-name 
+
+      - name: Copy files
+        file:
+          path: /tmp/file{{ item }}
+          state: directory
+          recurse: yes
+        with_items:
+        - name1
+        - name2
+        - name3l
+        

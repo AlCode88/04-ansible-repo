@@ -1,0 +1,27 @@
+
+#To ping your local host - ansible localhost -m ping
+
+# "Shell" "command" modules examples  - ansible localhost -m shell/command -a "ls /tmp" #ad-hoc command to list /tmp
+
+- ansible localhost -m shell uptime - we did not secified the "" because it is a single command
+- ansible localhost -a uptime - in this case we didn't use shell module since it will by default reffer to the module.
+
+Module to check the free memory of the linux machine - ansible localhost -m shell -a "free -m" 
+
+Note: By default your ansible inventory files are in the /etc/ansible/hosts
+
+Module to check the free disk space ansible localhost -m shell -a "df -h" 
+
+Note: If module Exist you have to always use module! 
+
+ANOTHER USEFUL MODULES
+
+"USERADD" - module. Required parameters are - Name
+
+"USER" - module. Required parameters - Name. Usage Example: ansible localhost -m user -a "name = bob state=absent remove = yes"
+to delete user bob
+
+"SETUP" - module is useful to check the metadata of your remote servers.s
+
+"FILE" - module. Required parameters - Path. Usage Example: ansible localhost -m file -a "state= absent path = /home/bob" 
+so it will delete the file in the defined path. 

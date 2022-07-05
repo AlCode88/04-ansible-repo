@@ -1,0 +1,15 @@
+---
+  - name: Change the file permissio
+    hosts: prod
+    gather_facts: yes
+    tasks:
+      - name: Ping the server
+        ping:
+      
+      - name: create a file with content testfile.txt on centos
+        when:
+         - ansible_facts ['distribution'] == "Ubuntu" 
+        file:
+          path: /tmp/testfile.txt
+          state: touch
+          mode: '0666'

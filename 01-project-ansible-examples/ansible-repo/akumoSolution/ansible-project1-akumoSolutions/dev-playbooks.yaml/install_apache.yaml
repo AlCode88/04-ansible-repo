@@ -1,0 +1,28 @@
+---
+  - name: isntall apache
+    hosts: dev
+    gather_facts: yes
+    tasks:
+    
+      - name: isntall apache
+        when: ansible_facts['distribution'] == "CentOS"
+        yum:
+          name: httpd
+          state: latest
+      
+      - name: copy Index.html
+        when: ansible_facts['distribution'] == "CentOS"
+        copy:
+          src: index.html
+          dest: /var/www/html/
+        register: copy_result
+      
+      - name: Start and Restart Apache
+        when: 
+        - ansible_facts['distribution'] == "CentOS"
+        - copy_result is changed
+        systemd:
+          name: httpd
+          enabled: yes
+          state: started
+          

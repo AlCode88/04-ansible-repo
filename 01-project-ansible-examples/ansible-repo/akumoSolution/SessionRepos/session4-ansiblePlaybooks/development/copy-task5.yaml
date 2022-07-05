@@ -1,0 +1,10 @@
+---
+  - name: copy content playbook
+    hosts: centos
+    tasks: 
+      - name: copy file from centos
+        copy:
+          src: /tmp/index.html
+          dest: /tmp/
+# to check the precense we can use simple ad-hoc command
+# ansible -i devservers.yaml centos -m shell -a "ls-l /tmp/"

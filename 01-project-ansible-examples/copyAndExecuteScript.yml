@@ -1,0 +1,15 @@
+---
+- name: Transfer file from local to remote
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Transfer the script
+      copy: src=../bashTraining/4_if_then_ifs_test_case/27_packageManagerCheck.sh dest=/tmp mode=0755
+
+    - name: Execute the script
+      command: sh /tmp/27_packageManagerCheck.sh
+      
+    - debug: 
+        msg: msg"Files have been executed"

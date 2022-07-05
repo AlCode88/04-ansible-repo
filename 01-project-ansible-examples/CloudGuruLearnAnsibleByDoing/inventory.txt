@@ -1,0 +1,9 @@
+[remote]
+centos ansible_ssh_host=centos@44.194.60.161
+ubuntu ansible_ssh_host=ubuntu@3.232.34.60
+
+[centos]
+centos ansible_ssh_host=centos@44.194.60.161
+
+[ubuntu]
+ubuntu ansible_ssh_host=ubuntu@3.232.34.60

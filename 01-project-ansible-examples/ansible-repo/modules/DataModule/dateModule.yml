@@ -1,0 +1,6 @@
+---
+  - name: 'Ececute a command to display hosts file on localhost'
+    hosts: localhost
+    tasks:
+      - name: 'Execute a date command'
+        command: date

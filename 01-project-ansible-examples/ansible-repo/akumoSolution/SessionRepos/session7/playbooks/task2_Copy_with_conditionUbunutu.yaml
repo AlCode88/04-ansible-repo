@@ -1,0 +1,13 @@
+---
+  - name: Copy file when the distribution is centOS
+    hosts: webservers
+    gather_facts: yes
+    tasks:
+      - name: Ping the host
+        ping:
+
+      - name: Copy file to centOS
+        when: ansible_distribution == 'CentOS'
+        copy:
+          src: /tmp/file1.txt
+          dest: /tmp/

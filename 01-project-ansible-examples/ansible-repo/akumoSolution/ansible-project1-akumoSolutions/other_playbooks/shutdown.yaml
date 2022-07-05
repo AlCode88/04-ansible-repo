@@ -1,0 +1,26 @@
+---
+  - name: Shut Down all Linux Servers
+    hosts: all
+    gather_facts: no
+    tasks:
+
+        - name: Shut Down
+          shell:
+            cmd: sleep 2 && /sbin/shutdown -c && /sbin/shutdown -h now
+          async: 1
+          poll: 0
+
+        - name: Shut Down
+          shell:
+            cmd: ping {{ list_of_hosts }} -c 5 
+          delegate_to: localhost
+          register: result 
+        
+        - name: Read Ping Response
+          debug:
+            var: result
+        
+        - name: Write Error Code to a file
+          shell:
+            cmd: echo {{ result }} >> /tmp/error.json
+          delegate_to: localhost

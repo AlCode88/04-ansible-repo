@@ -1,0 +1,10 @@
+---
+all:
+  hostst:
+  children:
+    dev:
+      hosts:
+        centos:
+          ansible_host: ip-centos
+        ubuntu:
+          ansible_host: ip-ubuntu

@@ -1,0 +1,17 @@
+---
+  - name: Update Packages
+    hosts: prod
+    tasks:
+      - name: Update packages on CentOS
+        yum:
+          name: "*"
+          state: latest
+        when:
+         - ansible_facts['distribution'] == "CentOS"
+      
+      - name: Update packages on Ubuntu
+        apt:
+          name: "*"
+          state: latest
+        when:
+         - ansible_facts['distribution_file_variety'] == "ubuntu"

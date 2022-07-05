@@ -1,0 +1,24 @@
+---
+  - name: isntall packages vim, git, curl, wget
+    hosts: prod
+    gather_facts: yes
+    tasks:
+      - name: isntall packages on centOS
+        when: ansible_facts['distribution'] == "CentOS"
+        yum:
+          name:
+           - vim
+           - git
+           - curl
+           - wget
+          state: latest
+      
+      - name: isntall packages on Ubuntu
+        when: ansible_facts['distribution'] == "Ubuntu"
+        apt:
+          name:
+           - vim
+           - git
+           - curl
+           - wget 
+          state: latest

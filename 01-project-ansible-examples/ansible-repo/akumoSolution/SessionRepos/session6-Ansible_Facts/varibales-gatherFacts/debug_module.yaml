@@ -1,0 +1,11 @@
+---
+  - name: Get the hostname of the remote server
+    hosts: ubuntu
+    gather_facts: yes
+    tasks:
+      - name: Pings file with ansible facts
+        ping:
+      
+      - name: Get the hostname of the Ubuntu server
+        debug:
+          msg: '{{ ansible_hostname }}'

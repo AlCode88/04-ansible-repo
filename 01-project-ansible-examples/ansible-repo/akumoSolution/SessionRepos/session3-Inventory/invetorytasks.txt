@@ -1,0 +1,46 @@
+Task1
+Create a testfile under /tmp folder using ansible ad-hoc command and testservers inventory, the task should run on all servers.
+ansible -i testservers.yaml all -m file -a "path=/tmp/testfile state=touch"
+
+Task2
+Change the permission of "testfile" in all servers to 644
+ansible -i testservers.yaml all -m file -a "path=/tmp/testfile mode=0644"
+you need to check the file permission prior to making chnanges.
+
+Task3
+Delete testfile under /tmp folder from all servers 
+ansible -i testservers.yaml all -m file -a "state=absent path=/tmp/testfile"
+
+Task4
+Create a new Droplet in Digital Ocean = 7.6 Centos 
+1 CPU 1GB add your and ansible-servers ssh keys to the host, Name it = host1
+
+Task5
+add host1 testservers.yaml inventory.
+
+Task7
+Get all distributions of testservers using ansible ad-hoc setup module.
+ansible -i testservers.yaml all -m setup -a "filter=ansible_dist*"
+
+Task8
+Add user "jhon" with uid=1050 and cmment "developer" to all servers under testservers group
+ansible -i testservers.yaml all -m user -a "name=Jhon uid=1050 comment=develoer"
+
+Task9
+Get hostname for all servers uder "testservers"
+ansible -i testservers.yaml all -m setup -a "filter=ansible_node*"
+we can do the same with the ansible shell module "systemctl" 
+
+Task10
+Update all packages on testservers group
+ansible -i testservers.yaml -m yum -a "update_only=yes" 
+
+Task11
+Install vim on all servers under testservers.yaml
+ansible -i testservers.yaml -m yum -a "name=vim state=present"
+
+Task12
+Create a file called "secret" add "hello" content under /tmp folder of ansible-server,copy the file to host1 under /tmp folder
+echo "hello" >> /tmp/secret
+ansible -i testservers.yaml all -m host1 -m copy -a "src=/tmp/secret dest=/tmp/" # destination is required part
+

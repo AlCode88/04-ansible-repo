@@ -1,0 +1,3 @@
+play_name: "this is a name of the playbook"
+servers: "prod"
+facts: yes

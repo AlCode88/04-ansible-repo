@@ -1,0 +1,61 @@
+
+- name: Install Application Packages
+  when: ansible_facts['hostname'] == "webserver"
+  yum:
+    name: "{{app_packages}}"
+    state: latest
+
+- name: Install Remi Repos
+  when: ansible_facts['hostname'] == "webserver"
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: present
+
+- name: Install Yum utils
+  when: ansible_facts['hostname'] == "webserver"
+  yum:
+    name: yum-utils
+    state: latest
+
+- name: Enable remi-php73 repository 
+  when: ansible_facts['hostname'] == "webserver"
+  yum_repository:
+    description: Extra Packages for Enterprise Linux 7 - $basearch
+    mirrorlist: http://cdn.remirepo.net/enterprise/7/php73/mirror
+    name: remi-php73
+    enabled: yes
+
+- name: Update Repository on Webserver
+  when: ansible_facts['hostname'] == "webserver"
+  yum:
+    name: "*"
+    state: latest
+
+- name: Install php 7.3 
+  when: ansible_facts['hostname'] == "webserver"
+  yum:
+    name: "{{ php_package }}"
+    state: present
+    enablerepo: "remi-*,epel,base"
+
+#- name: Download Wordpress
+#  when: ansible_facts ['hostname'] == "webserver"
+#  get_url:
+#    url: https://wordpress.org/latest.tar.gz
+#    dest: /tmp/wordpress.tar.gz
+
+- name: Download Wordpressn - unarchive
+  when: ansible_facts ['hostname'] == "webserver"
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /tmp/
+    remote_src: yes
+
+- name: Copy wordpress files to /var/www/html
+  when: ansible_facts ['hostname'] == "webserver"
+  copy:
+    src: /tmp/wordpress/
+    dest: /var/www/html/
+    owner: apache
+    group: apache
+    remote_src: yes

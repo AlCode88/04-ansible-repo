@@ -1,0 +1,11 @@
+---
+  - name: Disk usage
+    hosts: dev
+    tasks:
+      - name: Disk free
+        shell: 
+          cmd: df -h
+        register: output
+
+      - debug:
+          var: output      

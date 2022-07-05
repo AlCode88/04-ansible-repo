@@ -1,0 +1,9 @@
+#This is the structure of ansible inventory file 
+---
+all:
+  hosts:
+  children:
+    testserver:
+      hosts:
+        centos:
+          ansible_host: IP-of the Remote Machine

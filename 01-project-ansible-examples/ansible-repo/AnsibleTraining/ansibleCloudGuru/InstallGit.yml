@@ -1,0 +1,9 @@
+---
+  - hosts: centos
+    become: yes
+    gather_facts: no
+    tasks:
+      - name: Install git
+        yum:
+          name: git
+          state: latest

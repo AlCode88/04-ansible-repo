@@ -1,0 +1,17 @@
+---
+  - name: Create a file on remote servers
+    hosts: prod
+    tasks:
+      - name: create a file newfile.txt on centos 
+        file:
+          path: /tmp/newfile.txt
+          state: touch
+        when:
+         - ansible_facts ['distribution'] == "CentOS"
+      
+      - name: create a file textfile.txt on Ubuntu 
+        file:
+          path: /tmp/textfile.txt
+          state: touch
+        when:
+         - ansible_facts ['distribution'] == "Ubuntu"

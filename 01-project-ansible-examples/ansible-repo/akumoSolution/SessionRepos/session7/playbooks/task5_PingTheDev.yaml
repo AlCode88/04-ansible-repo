@@ -1,0 +1,8 @@
+---
+  - name: Ping server with condition
+    hosts: dev
+    gather_facts: yes
+    tasks:
+      - name: Ping the dev server
+        when: "'dev' in group_names"
+        ping: 

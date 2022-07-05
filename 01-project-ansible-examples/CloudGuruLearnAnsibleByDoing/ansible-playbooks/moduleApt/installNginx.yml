@@ -1,0 +1,19 @@
+---
+  - name: Install Nginx
+    hosts: remote
+    become: yes
+    tasks:
+      - name: Install Nginx on Ubuntu
+        apt: name=nginx state=present update_cache=yes
+        when: ansible_facts['distribution_file_variety'] == "ubuntu"
+
+      - name: Install Databse on Ubuntu
+        apt: name=mysql-server state=present update_cache=yes
+        when: ansible_facts['distribution_file_variety'] == "ubuntu"
+
+
+# update_cache is equivalent of running apt get update. You need to update the repo to see which package is available
+# to make sure if we find necessary packages
+
+#### become ######## 
+# - you can also add become at the task level but basically this is a sudo privialge

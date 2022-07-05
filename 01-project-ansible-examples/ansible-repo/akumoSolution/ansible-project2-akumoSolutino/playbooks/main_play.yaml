@@ -1,0 +1,12 @@
+---
+  - name: TestPlay
+    hosts: all
+    gather_facts: "{{facts}}"
+    vars_files:
+      - ../variables/main_vars.yaml
+    tasks:
+      - include: ../tasks/ping.yaml
+      - include: ../tasks/bootstrap.yaml
+      - include: ../tasks/webserver_packages.yaml
+      - include: ../tasks/database_packages.yaml
+      - include: ../tasks/startApache.yaml

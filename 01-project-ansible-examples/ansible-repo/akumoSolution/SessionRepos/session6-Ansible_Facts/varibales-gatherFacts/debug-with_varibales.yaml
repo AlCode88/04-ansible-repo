@@ -1,0 +1,14 @@
+---
+  - name: Variables playbook
+    hosts: ubuntu
+    gather_facts: yes
+    vars:
+      myvariable: "Hellow from hostname"
+    tasks:
+      - name: Ping the file
+        ping:
+      - name: Debug message from the hostname and variable
+        debug:
+          msg:
+          - '{{ ansible_hostname }}'
+          - '{{ myvariable }}' 

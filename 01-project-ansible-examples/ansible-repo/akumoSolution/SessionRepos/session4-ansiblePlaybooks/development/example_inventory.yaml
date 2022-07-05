@@ -1,0 +1,17 @@
+---
+all:
+  hosts:
+    server1:
+      ansible_host: Ip-of the server
+    localhost:
+  children:
+    dev:
+      hosts:
+        centos:
+          ansible_host: Ip of the server
+        ubuntu:
+          ansible_host: Ip of the server
+    dev2:
+      hosts:
+        app:
+          ansible_host: IP of the server

@@ -1,0 +1,41 @@
+---
+  - name: Install and start apache on all remote servers
+    hosts: dev
+    gather_facts: yes
+    tasks:
+      - name: Ping the host
+        ping:
+# Installing apache on CentOS with "when" and "register"
+      - name: Install httpd on CentOS
+        when:
+        - ansible_facts['distribution'] == "CentOS"
+        yum:
+          name: httpd
+          state: present
+        register: Task1
+# Starting Apache using systemd on cenos with "when"
+      - name: Make sure a service is running
+        when:
+        - ansible_facts ['distribution'] == "CentOS"
+        - Task1 is success
+        systemd:
+          name: httpd
+          state: started
+          enabled: yes
+# Installing apache on Ubunut with "when" and "register"
+      - name: Install httpd on Ubuntu
+        when:
+        - ansible_facts['distribution'] == "Ubuntu"
+        apt:
+          name: apache2
+          state: present
+        register: Task2   
+# Starting Apache using systemd on cenos with "when"
+      - name: Make sure a service is running
+        when:
+        - ansible_facts ['distribution'] == "Ubuntu"
+        - Task2 is success
+        systemd:
+          name: apache2
+          state: started
+          enabled: yes 

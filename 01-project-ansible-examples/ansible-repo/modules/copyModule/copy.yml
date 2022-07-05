@@ -1,0 +1,9 @@
+---
+  - name: Copy inventory to remote hosts
+    hosts: all
+    gather_facts: no
+    tasks:
+      - name: Copy inventory from dest
+        copy:
+          src: /root/1_Ansible_inventory/inventory.txt # Path to copy from
+          dest: /tmp

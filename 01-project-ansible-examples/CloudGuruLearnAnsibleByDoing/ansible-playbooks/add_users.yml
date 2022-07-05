@@ -1,0 +1,1 @@
+ansible remote -b -m file -a "path=/home/supervisor/.ssh "state=directory owner=supervisor group=supervisor mode=0755"

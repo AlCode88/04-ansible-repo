@@ -1,0 +1,18 @@
+---
+  - name: Install Git On Localhost
+    hosts: localhost
+    gather_facts: no
+    become: yes
+    tasks:
+      - name: install git
+        yum: 
+          name: git
+          state: latest
+      - name: Clone Git Repo To localhost
+        git:
+          repo: git@github.com:AlCode88/Ansible_Repo.git
+          version: main
+          dest: /tmp/talant
+          accept_hostkey: yes       #This will accept the host key
+          update: yes
+        become: no 

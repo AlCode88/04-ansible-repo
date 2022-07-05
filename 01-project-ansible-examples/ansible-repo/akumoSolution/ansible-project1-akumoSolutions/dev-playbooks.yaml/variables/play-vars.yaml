@@ -1,0 +1,4 @@
+test_message: "hello from test.yaml"
+servers: "all"
+facts: yes
+playbook_name: "testing Variable File"

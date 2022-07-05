@@ -1,0 +1,39 @@
+---
+  - name: Install htop, vim and curl on remote servers
+    hosts: dev
+    gather_facts: yes
+    tasks:
+      - name: Ping the host
+        ping:
+
+# First we need to install epel-release so that centos can get htop 
+# from that repository. And we need to register the task with "register"
+# and get the result of the task to the next task since ansible uses imperative method
+      - name: install epel-release (CentOS)
+        when: ansible_distribution == "CentOS"
+        yum:
+          name: epel-release
+          state: present
+        register: task_1
+
+# After installing the epel-release can install all the rest packages on Centos
+      - name: install htop, curl and vim
+        when: 
+        - ansible_distribution == "CentOS"
+        - task_1 is success
+        yum:
+          name:
+          - htop
+          - vim
+          - curl
+          state: present
+# Install packages on Ubuntu      
+      - name: install htop, curl and vim
+        when: 
+        - ansible_distribution == "Ubuntu"
+        apt:
+          name:
+          - htop
+          - vim
+          - curl
+          state: present

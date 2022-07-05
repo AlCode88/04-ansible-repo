@@ -1,0 +1,14 @@
+---
+  - name: Check the status of ubuntu
+    hosts: ubuntu
+    become: yes
+    gather_facts: yes
+    tasks:
+      - name: stop nginx
+        service: 
+          name: nginx
+          state: stopped
+      - name: stop apache2
+        service:
+          name: apache2
+          state: stopped

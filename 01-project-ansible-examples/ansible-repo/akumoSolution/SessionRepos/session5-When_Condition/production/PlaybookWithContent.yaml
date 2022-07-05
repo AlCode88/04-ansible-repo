@@ -1,0 +1,6 @@
+---
+  - name: Playbook with content
+    hosts: prod
+    tasks:
+      name: Playbook with content
+      

@@ -1,0 +1,20 @@
+---
+  - name: Create a file with content
+    hosts: prod
+    tasks:
+      - name: create a file with content newfile.txt on centos
+        when:
+         - ansible_facts ['distribution'] == "CentOS" 
+        copy:
+          dest: /tmp/newfile.txt
+          content: |
+            Hello from Ansible
+        
+      
+      - name: create a file textfile.txt on Ubuntu
+        when:
+         - ansible_facts ['distribution'] == "Ubuntu" 
+        copy:
+          dest: /tmp/textfile.txt
+          content: |
+            Hello from Ansible

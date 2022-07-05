@@ -1,0 +1,5 @@
+test_message: "hello from test.yaml"
+servers: "all"
+facts: no
+playbook_name: "testing Variable File"
+custom_command: "pwd"

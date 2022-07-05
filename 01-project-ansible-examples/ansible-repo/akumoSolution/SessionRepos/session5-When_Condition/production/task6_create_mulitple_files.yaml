@@ -1,0 +1,26 @@
+---
+  - name: Create a multiple files files on Remote Servers
+    hosts: prod
+    tasks:
+      
+      - name: create a multiple files text{0-3}.txt on CentOS
+        when:
+         - ansible_facts ['distribution'] == "CentOS" 
+        file: 
+          path: /tmp/"{{ item }}"
+          state: touch
+        with_items:
+        - text1.txt
+        - text2.txt
+        - text3.txt
+      
+      - name: create a multiple files on Ubuntu
+        when:
+         - ansible_facts ['distribution'] == "Ubuntu" 
+        file: 
+          path: /tmp/"{{ item }}"
+          state: touch
+        with_items:
+        - text1.txt
+        - text2.txt
+        - text3.txt

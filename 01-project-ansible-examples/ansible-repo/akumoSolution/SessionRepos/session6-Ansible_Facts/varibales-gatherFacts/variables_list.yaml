@@ -1,0 +1,14 @@
+---
+  - name: Get the hostname of the CentOS
+    gather_facts: yes
+    hosts: dev
+    vars:
+      variable1: "myhost"
+      variable2: "myhost2"
+    tasks:
+      - name: Ping the host 
+        ping:
+      - name: Get the message from the variables
+        debug:
+          msg: 
+          - '{{ variable1}} {{variable2}}'

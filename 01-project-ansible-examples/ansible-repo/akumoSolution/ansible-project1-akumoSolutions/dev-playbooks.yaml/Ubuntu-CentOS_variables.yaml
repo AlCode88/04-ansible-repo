@@ -1,0 +1,21 @@
+---
+  - name: "{{ playbook_name}}"
+    hosts: "{{ servers}}"
+    vars:
+      facts: no
+    vars_files: 
+      - "variables/tasks_vars.yaml"
+      - "variables/play-vars.yaml"
+    gather_facts: "{{ facts }}"
+    tasks:
+      - name: Install packages on CentOS
+        when: ansible_facts['distribution'] == "CentOS"
+        yum: 
+          name: "{{ packages }}"
+          state: latest
+      
+      - name: Install packages on Ubuntu
+        when: ansible_facts['distribution'] == "Ubuntu"
+        apt: 
+          name: "{{ packages }}"
+          state: latest

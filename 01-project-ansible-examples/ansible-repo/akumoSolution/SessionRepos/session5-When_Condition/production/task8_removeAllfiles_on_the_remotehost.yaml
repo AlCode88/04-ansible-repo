@@ -1,0 +1,30 @@
+---
+  - name: Remove all files on CentOS
+    hosts: prod
+    tasks:
+      
+      - name: remove all files on centos text{0-3}.txt on CentOS
+        when:
+         - ansible_facts ['distribution'] == "CentOS" 
+        file: 
+          path: /tmp/"{{ item }}"
+          mode: 0644
+          owner: root
+          state: absent
+        with_items:
+        - text1.txt
+        - text2.txt
+        - text3.txt
+      
+      - name: remove all files  on Ubuntu
+        when:
+         - ansible_facts ['distribution'] == "Ubuntu" 
+        file: 
+          path: /tmp/"{{ item }}"
+          mode: 0644
+          owner: root
+          state: absent
+        with_items:
+        - text1.txt
+        - text2.txt
+        - text3.txt

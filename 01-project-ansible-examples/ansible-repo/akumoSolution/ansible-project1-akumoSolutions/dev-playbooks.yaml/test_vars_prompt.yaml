@@ -1,0 +1,16 @@
+---
+  - name: Ping Dev
+    hosts: dev 
+    vars_prompt:
+      - name: "facts"
+        prompt: "Gather Facts?" 
+        private: yes
+        
+    gather_facts: "{{ facts }}"
+    tasks:
+      - name: Ping Host
+        ping:
+      - name: Private Variables
+        debug:
+          msg: "{{ facts }}"
+        

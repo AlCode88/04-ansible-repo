@@ -1,0 +1,22 @@
+- name: user playbook
+  hosts: all
+  become: true
+  tasks:
+    - name: Add the user 'johnd' with a specific uid and a primary group of 'admin'
+      user:
+        name: "{{ item }}"
+      with_items:
+        - jhon
+        - al
+        - tim
+  
+    - name: Make sure groups exits
+      group:
+        name: "{{ item }}"
+        state: present
+      with_items:
+      - somegroups
+      - sales
+      - marketing
+      - billing
+

@@ -1,0 +1,31 @@
+---
+- name: example playbook
+  hosts: localhost
+  vars:
+    myvar: 'example text'
+    mybool: false
+    mycities:
+      - Dubai
+      - Paris
+
+  tasks:
+    - name: print variables task
+      ansible.builtin.debug:
+        msg: "value {{ myvar }}"
+      notify: reload
+
+    - name: condition                  # Conditional statement we would like to display only when some conditions is true
+      ansible.builtin.debug:
+        msg: "example condition"
+      when: mybool                     # onlu when bool is true
+
+    - name: Print cities
+      ansible.builtin.debug:
+        var: item                      # item is the special vriable that you can use with loop
+      loop: "{{ mycities }}"             # this will loop through variable of the cities
+
+  handlers:
+    - name: reload                      # handler are usefule when you need some actions after some changes
+      ansible.builtin.debug:            # we are using this handler in line 15 task print variables
+        msg: "example handler"          # this handler will be executed when change in taks print var will happen
+        

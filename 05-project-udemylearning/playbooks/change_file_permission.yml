@@ -1,0 +1,11 @@
+- name: File playbook
+  hosts: all
+  become: true
+  become_method: sudo
+  tasks:
+    - name: Change the ownership, group and permission
+      file:
+        path: /tmp/file.txt
+        owner: al
+        mode: '0644'
+        state: touch

@@ -62,4 +62,22 @@ Examples:
 3. Third task prints variable conent defined in vars above
 4. Fourth task prints content of the variable in the verbose mode
 
-      
+### Another Example of debug module usage is:
+- This plauybook will run when there is specific conidtions are met
+```
+- name: Print the value of a variable
+  debug:
+    var: my_variable
+  when: role_debug
+```
+- One more example for debug module is to run it with loop:
+```
+- name: Print a message for each item in a list
+  debug:
+    msg: "Processing item {{ item }}"
+  with_items:
+    - item1
+    - item2
+    - item3
+```
+

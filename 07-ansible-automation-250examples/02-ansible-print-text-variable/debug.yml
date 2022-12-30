@@ -1,0 +1,26 @@
+---
+- name: Debug module demo
+  hosts: localhost
+  vars:
+    fruit: "apple"
+  tasks:
+
+    # If not speicfied any message it will print hello world
+    - name: Debug message
+      debug:
+    
+    # Print the message content with debug module
+    - name: Print debug message
+      ansible.builtin.debug:
+        msg: "This is debug message content"
+
+    # Print debug message with variable
+    - name: Print variable with debug
+      debug:
+        var: fruit
+
+    # Print the value of the message in the content
+    - name:
+      ansible.builtin.debug:
+        msg: "I like eating {{ fruit }}"
+        verbosity: 3

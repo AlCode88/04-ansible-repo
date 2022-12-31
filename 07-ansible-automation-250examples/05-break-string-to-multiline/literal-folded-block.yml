@@ -1,0 +1,23 @@
+---
+- name: Literal and folded block operators
+  hosts: localhost
+  vars:
+    variable1: |-
+      This is line 1
+      This is line 2
+      This is line 3
+    variable2: >-
+      This is line 1
+      This is line 2
+      This is line 3
+  tasks:
+    - name: 
+      ansible.builtin.debug:
+        var: "{{ item }}"
+      with_items:
+        - variable1
+        - variable2
+    
+    - name: Split the text
+      ansible.builtin.debug:
+        msg: "{{ variable1.split('\n') }}"

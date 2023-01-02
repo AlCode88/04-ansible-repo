@@ -1,0 +1,19 @@
+---
+# This playbook displays the env variables to check you need to set -v on the
+# command line. But first code checks it on playbook level second sets it on the taks level
+- name: remote evironment demo
+  hosts: all
+  gather_facts: false
+  environment:
+    EXAMPLE: test1
+  
+  tasks:
+    - name: display EXAMPLE
+      ansible.builtin.command: "echo $EXAMPLE"
+    
+    - name: display EXAMPLE
+      ansible.builtin.command: "echo $EXAMPLE"
+      environment:
+        EXAMPLE: test2
+
+# NOTE: This env variables only be used during task executions

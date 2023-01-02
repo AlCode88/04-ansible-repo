@@ -1,0 +1,27 @@
+---
+- name: command module example
+  hosts: all
+  tasks:
+    - name: check uptime
+      ansible.builtin.command: uptime
+      register: command_output
+    
+    - name: coammand output
+      ansible.builtin.debug:
+        var: command_output.stdout_lines
+    
+    - name: shell example
+      ansible.builtin.shell: cat /etc/os-release | grep -Ei "^Name" | sed 's/[\\"]//g' | cut -d '"' -f2
+      register: command_output
+    
+    - name: Display command
+      ansible.builtin.debug:
+        var: command_output.stdout_lines
+
+    - name: Shell example. You can not use * with command
+      shell: "ls -la *"
+      register: command_output
+
+    - name: Display message on the screen
+      debug:
+        var: command_output.stdout_lines

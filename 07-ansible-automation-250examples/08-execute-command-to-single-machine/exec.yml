@@ -1,0 +1,7 @@
+---
+- name: execution test
+  hosts: "{{ HOST }}"
+  tasks:
+    - name: execution test
+      ansible.builtin.debug:
+        msg: "execution test"

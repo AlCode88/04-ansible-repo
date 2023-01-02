@@ -1,0 +1,12 @@
+---
+- name: copy module demo
+  hosts: localhost
+  vars:
+    fruit: "banana"
+    output: "output.txt"
+  
+  tasks:
+    - name: write to file
+      ansible.builtin.copy:
+        content: "{{ fruit }}"
+        dest: /home/ec2-user/04-ansible-repo/07-ansible-automation-250examples/10-copy-and-template-module/{{ output }}

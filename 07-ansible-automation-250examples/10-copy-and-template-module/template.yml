@@ -1,0 +1,21 @@
+---
+- name: template module
+  hosts: node1
+  vars:
+    fruit: "apple"
+    output: "test.txt"
+  
+  tasks:
+    - name: copy content to remote host
+      ansible.builtin.template:
+        src: "template.j2"
+        dest:  /tmp/{{ output }}
+
+    - name: list the file
+      ansible.builtin.shell: "ls -l /tmp"
+      register: output
+
+    - name: list the directory
+      ansible.builtin.debug:
+        var: output.stdout_lines
+        

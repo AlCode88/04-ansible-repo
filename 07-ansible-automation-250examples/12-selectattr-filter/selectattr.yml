@@ -1,0 +1,25 @@
+---
+- name: selectattr demo
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: all features of network interface
+      ansible.builtin.debug:
+        var: 'ansible_facts.eth0.features'
+
+    # Now lets filter with selectattr in the eth0
+    - name: List enabled features
+      debug:
+        msg:  "{{ (ansible_facts.eth0.features | dict2items | selectattr('value', 'match', 'on') ) }}"
+
+    # Select all instances with an instance type of "t3.micro"
+- name: Select t3.micro instances
+  ec2_instance_info:
+    filters:
+      instance-type: t3.micro
+  register: instances
+
+- name: Print selected instances
+  debug:
+    msg: "{{ item.id }}: {{ item.instance_type }}"
+  with_items: "{{ instances.instances | selectattr('instance_type', 'equalto', 't2.micro') }}"
